@@ -81,19 +81,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="u95EE_u9898_u62A5_u544A_u6307_u5357"><a href="#u95EE_u9898_u62A5_u544A_u6307_u5357" class="headerlink" title="问题报告指南"></a>问题报告指南</h2><ul>
+        <h2 id="issue_u62A5_u544A_u6307_u5357"><a href="#issue_u62A5_u544A_u6307_u5357" class="headerlink" title="issue报告指南"></a>issue报告指南</h2><ul>
 <li>这个报告的问题列表只应该包含<strong>bug报告</strong>和<strong>特性的请求</strong>。对于简单的问题，可以使用<a href="https://gitter.im/vuejs/vue" target="_blank" rel="external">Gitter</a>或者<a href="http://forum.vuejs.org" target="_blank" rel="external">官方论坛</a>。</li>
 <li>尝试搜索你的问题，也许已经有人答复了这个问题，甚至已经在开发分支中解决了。</li>
 <li>检查这个问题在最新的稳定版Vue.js中是否能够重现。如果你在使用预览版，请标明你正在使用的版本。</li>
-<li>你<strong>必须</strong>清楚地描述所有必要的步骤，以便重现你发现的这个问题。没用明确重现步骤的问题将不会被分类。如果一个问题被标记为“需要重现（need repro）”，而问题的发现者在5天内没有进一步的说明，这个问题就会被关闭。</li>
+<li>你<strong>必须</strong>清楚地描述所有必要的步骤，以便重现你发现的这个问题。没用明确重现步骤的问题将不会被分类。如果一个问题被标记为”需要重现(need repro)”，而问题的发现者在5天内没有进一步的说明，这个问题就会被关闭。</li>
 <li>强烈建议使用JSFiddle来演示你的问题。你可以使用<a href="http://jsfiddle.net/5sH6A/" target="_blank" rel="external">模板</a>，这里已经包含了最新版本的Vue.js。</li>
 <li>如果你的问题已经被解决了，但是问题报告还处于<strong>open</strong>状态，你应该毫不犹豫地关掉它。如果你自己找到了解决方案，你可以留下你的解决办法，以便帮助遇到这个问题的其他人。</li>
 </ul>
+<h2 id="Pull_Request_u6307_u5357"><a href="#Pull_Request_u6307_u5357" class="headerlink" title="Pull Request指南"></a>Pull Request指南</h2><ul>
+<li>从dev创建一个新分支再合并回来。</li>
+<li>只在<code>src</code>目录下工作，<strong>不要</strong>把<code>dist</code>目录的文件提交上来。</li>
+<li>如果有太多小的修改，可以合并提交。</li>
+<li>遵守<a href="#code-style">代码规范</a></li>
+<li>确保默认的grunt任务通过(详情见<a href="#development-setup">开发安装步骤</a>)</li>
+<li>如果是添加新的特性:<ul>
+<li>添加相应的测试案例。</li>
+<li>提供添加这个特性的理由。理论上来说，你应该先提交一个issue建议并且让它通过，然后你才应该实现它。</li>
+</ul>
+</li>
+<li>如果是修复一个bug:<ul>
+<li>请在Pull Request中详细描述这个bug的信息。有demo最好。</li>
+<li>可以的话，请添加合适的测试案例进行覆盖。</li>
+</ul>
+</li>
+</ul>
+<h2 id="code-style">代码规范</h2>
+
+<ul>
+<li><a href="http://inimino.org/~inimino/blog/javascript_semicolons" target="_blank" rel="external">如非必要请不要使用分号</a></li>
+<li>遵从JSDoc</li>
+<li>使用2个空格进行缩进</li>
+<li>多重var声明</li>
+<li>在<code>function</code>和函数名称后面保留1个空格</li>
+<li>在参数之间保留1个空格，但不要跟括号保留空格</li>
+<li><p>对比较长的三元判断进行分割，例如:</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = superLongConditionalStatement</span><br><span class="line">? <span class="string">'yep'</span></span><br><span class="line">: <span class="string">'nope'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有疑问，请阅读源码</p>
+</li>
+</ul>
+<h2 id="development-setup">开发安装步骤</h2>
+
+<p>你需要安装<a href="https://nodejs.org" target="_blank" rel="external">Node.js</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br><span class="line"><span class="comment"># install pre-commit lint hook</span></span><br><span class="line">$ npm run install-hook</span><br></pre></td></tr></table></figure>
+<p>开发方式:开发过程中，监控并自动构建<code>dist/vue.js</code>，并且在<code>http://localhost:8080</code>输出单元测试结果:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run dev</span><br></pre></td></tr></table></figure>
+<p>链接:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run lint</span><br></pre></td></tr></table></figure>
+<p>构建:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br></pre></td></tr></table></figure>
+<p>运行默认的测试套:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br></pre></td></tr></table></figure>
+<p>默认的测试脚本会执行以下步骤:链接-&gt;单元覆盖测试-&gt;构建-&gt;端对端测试。<strong>在提交Pull Request之前请确保这个测试成功通过</strong>。</p>
+<p>单元测试使用<a href="http://jasmine.github.io/2.3/introduction.html" target="_blank" rel="external">Jasmine</a>，并在<a href="http://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">Karma</a>上运行。至于端对端测试则是运行在<a href="http://casperjs.org/" target="_blank" rel="external">CasperJS</a>之上。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cii62zp5i0000vs8aamsd5cp7" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cii7hoxy90000rs8aw3hwh74g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
@@ -132,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cii62vep90000uo8at9eq15q0" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cii7hoxyn0005rs8att0fmur2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
