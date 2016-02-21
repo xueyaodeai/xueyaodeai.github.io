@@ -5,22 +5,28 @@
   
   <title>HammerDB | Allen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HammerDBMicrosoft SQL Server OLTP 测试最佳实践
+  <meta name="description" content="Microsoft SQL Server OLTP 测试最佳实践
 这篇文档在HammerDB和SQL Server的配置方面提供建议和指导，以便达到在之后的HammerDB OLTP测试中达到比较好的吞吐量。
-不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注">
+不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注的重点。
+
+SQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HammerDB">
 <meta property="og:url" content="http://xueyaodeai.github.io/2016/02/21/HammerDB/index.html">
 <meta property="og:site_name" content="Allen's Blog">
-<meta property="og:description" content="HammerDBMicrosoft SQL Server OLTP 测试最佳实践
+<meta property="og:description" content="Microsoft SQL Server OLTP 测试最佳实践
 这篇文档在HammerDB和SQL Server的配置方面提供建议和指导，以便达到在之后的HammerDB OLTP测试中达到比较好的吞吐量。
-不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注">
-<meta property="og:updated_time" content="2016-02-21T14:59:08.000Z">
+不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注的重点。
+
+SQ">
+<meta property="og:updated_time" content="2016-02-21T15:01:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HammerDB">
-<meta name="twitter:description" content="HammerDBMicrosoft SQL Server OLTP 测试最佳实践
+<meta name="twitter:description" content="Microsoft SQL Server OLTP 测试最佳实践
 这篇文档在HammerDB和SQL Server的配置方面提供建议和指导，以便达到在之后的HammerDB OLTP测试中达到比较好的吞吐量。
-不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注">
+不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注的重点。
+
+SQ">
   
     <link rel="alternative" href="/atom.xml" title="Allen&#39;s Blog" type="application/atom+xml">
   
@@ -86,7 +92,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="HammerDB"><a href="#HammerDB" class="headerlink" title="HammerDB"></a>HammerDB</h1><h2 id="Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5"><a href="#Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5" class="headerlink" title="Microsoft SQL Server OLTP 测试最佳实践"></a>Microsoft SQL Server OLTP 测试最佳实践</h2><ul>
+        <h2 id="Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5"><a href="#Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5" class="headerlink" title="Microsoft SQL Server OLTP 测试最佳实践"></a>Microsoft SQL Server OLTP 测试最佳实践</h2><ul>
 <li>这篇文档在HammerDB和SQL Server的配置方面提供建议和指导，以便达到在之后的HammerDB OLTP测试中达到比较好的吞吐量。</li>
 <li>不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注的重点。</li>
 </ul>
@@ -127,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikwolfeg0000f58adf9d7174" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikwompr00000g58az0uc1rt3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HammerDB/">HammerDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/">Test</a></li></ul>
