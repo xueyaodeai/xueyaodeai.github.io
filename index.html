@@ -107,22 +107,44 @@
 </li>
 <li><p>验证单线程性能</p>
 <ul>
-<li><p>为了验证你达到了CPU单线程的最大性能，你可以创建并运行下面的存储过程<em>stored procedure</em></p>
+<li><p>为了验证你达到了CPU单线程的最大性能，你可以创建并运行下面的存储程序<em>stored procedure</em></p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">USE</span> [tpcc]<span class="keyword">GO</span><span class="keyword">SET</span> ANSI_NULLS <span class="keyword">ON</span><span class="keyword">GO</span><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> [dbo].[CPUSIMPLE]</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">BEGIN</span></span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">n</span> <span class="built_in">numeric</span>(<span class="number">16</span>,<span class="number">6</span>) = <span class="number">0</span>,</span><br><span class="line">            @a DATETIME,</span><br><span class="line">            @b DATETIME</span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">f</span> <span class="built_in">int</span></span><br><span class="line">        <span class="keyword">SET</span> @<span class="keyword">f</span> = <span class="number">1</span>        <span class="keyword">SET</span> @a = <span class="keyword">CURRENT_TIMESTAMP</span>        <span class="keyword">WHILE</span> @<span class="keyword">f</span> &lt;= <span class="number">10000000</span>            <span class="keyword">BEGIN</span>        <span class="keyword">SET</span> @<span class="keyword">n</span> = @<span class="keyword">n</span> % <span class="number">999999</span> + <span class="keyword">sqrt</span>(@<span class="keyword">f</span>)</span><br><span class="line">                <span class="keyword">SET</span> @<span class="keyword">f</span> = @<span class="keyword">f</span> + <span class="number">1</span> </span><br><span class="line">            <span class="keyword">END</span>        <span class="keyword">SET</span> @b = <span class="keyword">CURRENT_TIMESTAMP</span>        PRINT <span class="string">'Timing = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(<span class="keyword">DATEDIFF</span>(MS, @a, @b)<span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>) </span><br><span class="line">        PRINT <span class="string">'Res = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(@<span class="keyword">n</span> <span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)<span class="keyword">END</span></span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在任意的数据库中，通过运行上面的代码创建存储过程<em>stored procedure</em></p>
+<li><p>在任意的数据库中，通过运行上面的代码创建存储程序<em>stored procedure</em></p>
 </li>
-<li><p>右键点击CPUSIMPLE，并且点击执行<em>stored procedure</em>，点击OK并等待。如果运行成功会返回0值，点击信息查看程序运行时间，例如：</p>
+<li><p>右键点击CPUSIMPLE，并且点击执行存储程序<em>stored procedure</em>，点击OK并等待。如果运行成功会返回0值，点击信息查看程序运行时间，例如：</p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Timing = <span class="number">8250</span>Res = <span class="number">873729.721235</span>(<span class="number">1</span> row(s) affected)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在这个案例中，存储程序运行时间为8.2秒。实际性能表现依赖于使用的CPU，通常最新的CPU都应该在10s内完成这个事务。</p>
+</li>
+<li>你可以阅读这篇博客<a href="https://communities.intel.com/community/itpeernetwork/datastack/blog/2014/03/04/how-to-maximise-cpu-performance-for-sql-server-on-windows" target="_blank" rel="external">How to Maximise CPU Performance for SQL Server on Windows</a>,来了解更多关于这个测试的信息以及问题分析</li>
+</ul>
+</li>
+<li>网络带宽<ul>
+<li>在一个高度可扩展的系统中，日至生成服务器和被测系统之间的网络使用率可能超过千兆速率。如果要提高带宽容量，你可以使用万兆以太网或者为两端的多个千兆以太网适配器配置NIC组，并且将两端兼容LACP的设备切换到LACP模式。首先，需要配置网络交换机，是的LACP可以使用你的交换机文档，然后在服务器管理窗口，为已经连接到同一个交换机的网卡配置NIC组。</li>
+<li>运行一个HammerDB工作流，同时通过任务管理器确认网络带宽已经超过千兆。</li>
+</ul>
+</li>
+<li><p>SQL Server的属性</p>
+<ul>
+<li><p>你可以根据你已有的硬件，使用图形化工具或者手工操作对SQL Server进行配置。下面的例子展示了内存在256GB到512GB时使用的一个配置。</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exec sp_configure '<span class="operator"><span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">', '</span><span class="number">1</span><span class="string">' </span><br><span class="line">reconfigure with overrideexec sp_configure '</span><span class="keyword">min</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 256000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 512000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">recovery</span> <span class="built_in">interval</span><span class="string">','</span><span class="number">32767</span><span class="string">' </span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> degree <span class="keyword">of</span> parallelism<span class="string">','</span><span class="number">1</span><span class="string">' </span><br><span class="line">exec sp_configure '</span>lightweight pooling<span class="string">','</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">priority</span> boost<span class="string">', '</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">max</span> worker threads<span class="string">', 3000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">default</span> <span class="keyword">trace</span> enabled<span class="string">', 0 </span><br><span class="line">goreconfigure with override</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同时也要确保处理器关联性<em>Processor Affinity</em>被设置为自动模式</p>
 </li>
 </ul>
 </li>
+<li>创建数据库<ul>
+<li>在数据库服务器中直接创建HammerDB计划会更快，因为你可以从多核系统中获益，并且不需要通过网络来传输所有的数据。首先，提前创建一个名为<em>tpcc(或者其他名字)</em>的空数据库，这可以让你提前选择和配置你的存储。确保初始的DATA文件足够的大(例如4槽200GB)，这样可以保证这些文件不会在测试中持续增长，从而牺牲了一部分性能。你也可以设置自动增长属性，使得文件大小在不得不增长的情况下，让其增长到足够的大小，避免二次性能开销。</li>
+</ul>
+</li>
+<li>计划的新建与配置</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikwompr00000g58az0uc1rt3" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikwoobs90000gx8a33zgw0as" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HammerDB/">HammerDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/">Test</a></li></ul>
@@ -214,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cikwomprj000ag58adx7wyvwo" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cikwoobst000agx8a7bkoxlkx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
@@ -253,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cikwomprf0005g58aist5oeee" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cikwoobsq0005gx8azcjdhbg9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
