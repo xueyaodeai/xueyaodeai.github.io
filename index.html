@@ -91,7 +91,7 @@
 <li>性能的关键性依赖是硬件</li>
 <li><strong>CPU</strong>是影响系统其余部分所能达到的性能级别的最重要的因素</li>
 <li>CPU之后的下一级别是<strong>内存</strong>，想要得到最高性能，需要提供足够多的内存以缓存测试数据库的所有内容</li>
-<li>最终，<strong>IO性能</strong>也是至关重要的。它决定了系统和CPU能够处理的吞吐量的级别。尤其在OLTP工作流中，处理日志的写入性能的要求是非常严苛的，而且它通常是一个性能瓶颈。</li>
+<li>最终，<strong>IO性能</strong>也是至关重要的。它决定了系统和CPU能够处理的吞吐量的级别。尤其在OLTP工作流中，事务日志对写入性能的要求是非常严苛的，而且IO通常是一个性能瓶颈。</li>
 <li>为了提供可以匹配现今系统的CPU处理能力的IO性能，强烈建议使用SSD来存储数据信息和日志</li>
 </ul>
 </li>
@@ -107,15 +107,15 @@
 </li>
 <li><p>验证单线程性能</p>
 <ul>
-<li><p>为了验证你达到了CPU单线程的最大性能，你可以创建并运行下面的存储程序<em>stored procedure</em></p>
+<li><p>为了验证你达到了CPU单线程的最大性能，你可以创建并运行下面的存储过程<em>stored procedure</em></p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">USE</span> [tpcc]<span class="keyword">GO</span><span class="keyword">SET</span> ANSI_NULLS <span class="keyword">ON</span><span class="keyword">GO</span><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> [dbo].[CPUSIMPLE]</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">BEGIN</span></span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">n</span> <span class="built_in">numeric</span>(<span class="number">16</span>,<span class="number">6</span>) = <span class="number">0</span>,</span><br><span class="line">            @a DATETIME,</span><br><span class="line">            @b DATETIME</span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">f</span> <span class="built_in">int</span></span><br><span class="line">        <span class="keyword">SET</span> @<span class="keyword">f</span> = <span class="number">1</span>        <span class="keyword">SET</span> @a = <span class="keyword">CURRENT_TIMESTAMP</span>        <span class="keyword">WHILE</span> @<span class="keyword">f</span> &lt;= <span class="number">10000000</span>            <span class="keyword">BEGIN</span>        <span class="keyword">SET</span> @<span class="keyword">n</span> = @<span class="keyword">n</span> % <span class="number">999999</span> + <span class="keyword">sqrt</span>(@<span class="keyword">f</span>)</span><br><span class="line">                <span class="keyword">SET</span> @<span class="keyword">f</span> = @<span class="keyword">f</span> + <span class="number">1</span> </span><br><span class="line">            <span class="keyword">END</span>        <span class="keyword">SET</span> @b = <span class="keyword">CURRENT_TIMESTAMP</span>        PRINT <span class="string">'Timing = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(<span class="keyword">DATEDIFF</span>(MS, @a, @b)<span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>) </span><br><span class="line">        PRINT <span class="string">'Res = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(@<span class="keyword">n</span> <span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)<span class="keyword">END</span></span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在任意的数据库中，通过运行上面的代码创建存储程序<em>stored procedure</em></p>
+<li><p>在任意的数据库中，通过运行上面的代码创建存储过程<em>stored procedure</em></p>
 </li>
-<li><p>右键点击CPUSIMPLE，并且点击执行存储程序<em>stored procedure</em>，点击OK并等待。如果运行成功会返回0值，点击信息查看程序运行时间，例如：</p>
+<li><p>右键点击CPUSIMPLE，并且点击执行存储过程<em>stored procedure</em>，点击OK并等待。如果运行成功会返回0值，点击信息查看程序运行时间，例如：</p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Timing = <span class="number">8250</span>Res = <span class="number">873729.721235</span>(<span class="number">1</span> row(s) affected)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在这个案例中，存储程序运行时间为8.2秒。实际性能表现依赖于使用的CPU，通常最新的CPU都应该在10s内完成这个事务。</p>
+<li><p>在这个案例中，存储过程运行时间为8.2秒。实际性能表现依赖于使用的CPU，通常最新的CPU都应该在10s内完成这个事务。</p>
 </li>
 <li>你可以阅读这篇博客<a href="https://communities.intel.com/community/itpeernetwork/datastack/blog/2014/03/04/how-to-maximise-cpu-performance-for-sql-server-on-windows" target="_blank" rel="external">How to Maximise CPU Performance for SQL Server on Windows</a>,来了解更多关于这个测试的信息以及问题分析</li>
 </ul>
@@ -130,21 +130,43 @@
 <li><p>你可以根据你已有的硬件，使用图形化工具或者手工操作对SQL Server进行配置。下面的例子展示了内存在256GB到512GB时使用的一个配置。</p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exec sp_configure '<span class="operator"><span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">', '</span><span class="number">1</span><span class="string">' </span><br><span class="line">reconfigure with overrideexec sp_configure '</span><span class="keyword">min</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 256000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 512000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">recovery</span> <span class="built_in">interval</span><span class="string">','</span><span class="number">32767</span><span class="string">' </span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> degree <span class="keyword">of</span> parallelism<span class="string">','</span><span class="number">1</span><span class="string">' </span><br><span class="line">exec sp_configure '</span>lightweight pooling<span class="string">','</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">priority</span> boost<span class="string">', '</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">max</span> worker threads<span class="string">', 3000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">default</span> <span class="keyword">trace</span> enabled<span class="string">', 0 </span><br><span class="line">goreconfigure with override</span></span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>同时也要确保处理器关联性<em>Processor Affinity</em>被设置为自动模式</p>
+<li><p>同时注意把处理器关联性<em>Processor Affinity</em>设置为自动模式</p>
 </li>
 </ul>
 </li>
 <li>创建数据库<ul>
-<li>在数据库服务器中直接创建HammerDB计划会更快，因为你可以从多核系统中获益，并且不需要通过网络来传输所有的数据。首先，提前创建一个名为<em>tpcc(或者其他名字)</em>的空数据库，这可以让你提前选择和配置你的存储。确保初始的DATA文件足够的大(例如4槽200GB)，这样可以保证这些文件不会在测试中持续增长，从而牺牲了一部分性能。你也可以设置自动增长属性，使得文件大小在不得不增长的情况下，让其增长到足够的大小，避免二次性能开销。</li>
+<li>受益于多个核心，在数据库服务器中直接创建HammerDB计划会更快，并且不需要通过网络来传输所有的数据。首先，提前创建一个名为<em>tpcc(或者其他名字)</em>的空数据库，这样做可以提前选择和配置你的存储。确保初始的DATA文件足够大(例如4槽200GB)，这样可以避免文件在测试中的持续增长，从而影响部分性能。你也可以设置自动增长属性，让文件大小在必须增长的情况下，一次增加足够的大小，避免二次性能开销。</li>
 </ul>
 </li>
-<li>计划的新建与配置</li>
+<li><p>计划的创建与配置</p>
+<ul>
+<li>在创建HammerDB SQL Server计划时，记得在<em>Schema</em>选项中选择<em>Updated</em>。这个计划选项可以提供更好的性能，因为<em>Original</em>选项需要对HammerDB的早期版本保持兼容性。</li>
+<li><p>创建完成后马上对<em>TPCC</em>数据库进行备份，最简单的方式就是停止SQL Server服务器，然后将<em>TPCC</em> DATA和LOG文件复制到备份文件夹。如果要重置计划，只需要删除现有的计划，将DATA和LOG文件从备份文件夹中拷贝回来，然后使用ATTACH命令将原始的数据库添加回来，再使用下面的命令配置该计划。</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> <span class="keyword">RECOVERY</span> SIMPLE</span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> TORN_PAGE_DETECTION <span class="keyword">OFF</span> </span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> PAGE_VERIFY <span class="keyword">NONE</span> </span><br><span class="line"><span class="keyword">GO</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>分割历史表</p>
+<ul>
+<li><p>对于高度可扩展的系统来说，分割历史表可以减少插入冲突，无论是在你使用SQL Server Management Studio或者运行语句时。下面的语句根据仓库数量修改高亮部分的数值，每100个仓库划为1个分区。</p>
+  <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE [tpcc]</span><br><span class="line">GO</span><br><span class="line">BEGIN TRANSACTION</span><br><span class="line">CREATE PARTITION FUNCTION [<span class="link_label">HISTORY_PART</span>](<span class="link_url">int</span>) AS RANGE LEFT FOR VALUES (1, 100, 200, 300, 400, 500, 600, 700, 800, 900)</span><br><span class="line">CREATE PARTITION SCHEME [HISTORY<span class="emphasis">_PART] AS PARTITION [HISTORY_</span>PART] TO ([PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY])</span><br><span class="line">CREATE CLUSTERED INDEX [<span class="link_label">ClusteredIndex_on_HISTORY_PART_634589363881526517</span>] ON [<span class="link_label">dbo</span>].[<span class="link_label">history</span>] ( [<span class="link_label">h_w_id</span>] )WITH (SORT<span class="emphasis">_IN_</span>TEMPDB = OFF, IGNORE<span class="emphasis">_DUP_</span>KEY = OFF, DROP<span class="emphasis">_EXISTING = OFF, ONLINE = OFF) ON [HISTORY_</span>PART]([h<span class="emphasis">_w_</span>id])</span><br><span class="line">DROP INDEX [ClusteredIndex<span class="emphasis">_on_</span>HISTORY<span class="emphasis">_PART_</span>634589363881526517] ON [dbo].[history] WITH ( ONLINE = OFF )</span><br><span class="line">COMMIT TRANSACTION</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li>调整事务日志文件的大小<ul>
+<li>当恢复间隔被设置为最大值时，会在事务日志大小超过预设的70%时设置一个检查点。因为高性能依赖于你的数据文件的IO写入速率，设置检查点时会对IO造成显著的影响，下面的HammerDB事务统计图说明了这一点。</li>
+</ul>
+</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikwoobs90000gx8a33zgw0as" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikzl8z1y0000le8a57l8raps" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HammerDB/">HammerDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/">Test</a></li></ul>
@@ -236,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cikwoobst000agx8a7bkoxlkx" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cikzl8z2g000ale8ansit0cqm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
@@ -275,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cikwoobsq0005gx8azcjdhbg9" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cikzl8z2d0005le8awofwv9oz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
