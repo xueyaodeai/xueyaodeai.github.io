@@ -19,7 +19,7 @@ SQ">
 不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注的重点。
 
 SQ">
-<meta property="og:updated_time" content="2016-02-23T15:49:52.000Z">
+<meta property="og:updated_time" content="2016-02-23T15:54:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HammerDB">
 <meta name="twitter:description" content="Microsoft SQL Server OLTP 测试最佳实践
@@ -157,8 +157,6 @@ SQ">
 </li>
 </ul>
 </li>
-</ol>
-<ol>
 <li><p>分割历史表</p>
 <ul>
 <li><p>对于高度可扩展的系统来说，分割历史表可以减少插入冲突，无论是在你使用SQL Server Management Studio或者运行语句时。下面的语句根据仓库数量修改高亮部分的数值，每100个仓库划为1个分区。</p>
@@ -166,9 +164,8 @@ SQ">
 </li>
 </ul>
 </li>
-</ol>
-<ol>
-<li>调整事务日志文件的大小<ul>
+<li><p>调整事务日志文件的大小</p>
+<ul>
 <li>当恢复间隔被设置为最大值时，会在事务日志大小超过预设的70%时设置一个检查点。因为高性能依赖于你的数据文件的IO写入速率，设置检查点时会对IO造成显著的影响，下面的HammerDB事务统计图说明了这一点。</li>
 </ul>
 </li>
@@ -177,7 +174,7 @@ SQ">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikzl8z1y0000le8a57l8raps" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikzldmjb0000pf8a9z206jag" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HammerDB/">HammerDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/">Test</a></li></ul>
