@@ -19,7 +19,7 @@ SQ">
 不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注的重点。
 
 SQ">
-<meta property="og:updated_time" content="2016-02-23T15:54:37.000Z">
+<meta property="og:updated_time" content="2016-02-24T15:33:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HammerDB">
 <meta name="twitter:description" content="Microsoft SQL Server OLTP 测试最佳实践
@@ -98,7 +98,8 @@ SQ">
 </ul>
 <h2 id="SQL_Server__u6027_u80FD_u548C_u53EF_u6269_u5C55_u6027_u7684_u6700_u4F73_u5B9E_u8DF5"><a href="#SQL_Server__u6027_u80FD_u548C_u53EF_u6269_u5C55_u6027_u7684_u6700_u4F73_u5B9E_u8DF5" class="headerlink" title="SQL Server 性能和可扩展性的最佳实践"></a>SQL Server 性能和可扩展性的最佳实践</h2><p><strong>SQL Server 2012 在拥有2、4和8个插槽的系统中提供了出色的可扩展性。SQL Server 配置的最佳实践可以利用这些可扩展性得到最佳性能。</strong></p>
 <ol>
-<li>CPU、内存和IO<ul>
+<li><p><strong>CPU、内存和IO</strong></p>
+<ul>
 <li>性能的关键性依赖是硬件</li>
 <li><strong>CPU</strong>是影响系统其余部分所能达到的性能级别的最重要的因素</li>
 <li>CPU之后的下一级别是<strong>内存</strong>，想要得到最高性能，需要提供足够多的内存以缓存测试数据库的所有内容</li>
@@ -106,17 +107,19 @@ SQ">
 <li>为了提供可以匹配现今系统的CPU处理能力的IO性能，强烈建议使用SSD来存储数据信息和日志</li>
 </ul>
 </li>
-<li>BIOS设置<ul>
+<li><p><strong>BIOS设置</strong></p>
+<ul>
 <li>系统使用默认的BIOS设置，并不需要特意为数据库性能优化。</li>
 <li>应该检查BIOS设置并且将设置向供应商验证，以确保它们有利于提高SQL Server的性能。</li>
 <li>我们经常会犯一个错误，接受高性能的默认设置，让其设置一系列较低层次的BIOS选项，而不去验证这些选项的具体功能。高性能的默认设置往往会导致数据库性能表现不佳。</li>
 </ul>
 </li>
-<li>电源选项<ul>
+<li><p><strong>电源选项</strong></p>
+<ul>
 <li>打开windows系统的电源选项框，选择<strong>高性能</strong></li>
 </ul>
 </li>
-<li><p>验证单线程性能</p>
+<li><p><strong>验证单线程性能</strong></p>
 <ul>
 <li><p>为了验证你达到了CPU单线程的最大性能，你可以创建并运行下面的存储过程<em>stored procedure</em></p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">USE</span> [tpcc]<span class="keyword">GO</span><span class="keyword">SET</span> ANSI_NULLS <span class="keyword">ON</span><span class="keyword">GO</span><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> [dbo].[CPUSIMPLE]</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">BEGIN</span></span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">n</span> <span class="built_in">numeric</span>(<span class="number">16</span>,<span class="number">6</span>) = <span class="number">0</span>,</span><br><span class="line">            @a DATETIME,</span><br><span class="line">            @b DATETIME</span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">f</span> <span class="built_in">int</span></span><br><span class="line">        <span class="keyword">SET</span> @<span class="keyword">f</span> = <span class="number">1</span>        <span class="keyword">SET</span> @a = <span class="keyword">CURRENT_TIMESTAMP</span>        <span class="keyword">WHILE</span> @<span class="keyword">f</span> &lt;= <span class="number">10000000</span>            <span class="keyword">BEGIN</span>        <span class="keyword">SET</span> @<span class="keyword">n</span> = @<span class="keyword">n</span> % <span class="number">999999</span> + <span class="keyword">sqrt</span>(@<span class="keyword">f</span>)</span><br><span class="line">                <span class="keyword">SET</span> @<span class="keyword">f</span> = @<span class="keyword">f</span> + <span class="number">1</span> </span><br><span class="line">            <span class="keyword">END</span>        <span class="keyword">SET</span> @b = <span class="keyword">CURRENT_TIMESTAMP</span>        PRINT <span class="string">'Timing = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(<span class="keyword">DATEDIFF</span>(MS, @a, @b)<span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>) </span><br><span class="line">        PRINT <span class="string">'Res = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(@<span class="keyword">n</span> <span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)<span class="keyword">END</span></span></span><br></pre></td></tr></table></figure>
@@ -131,12 +134,13 @@ SQ">
 <li>你可以阅读这篇博客<a href="https://communities.intel.com/community/itpeernetwork/datastack/blog/2014/03/04/how-to-maximise-cpu-performance-for-sql-server-on-windows" target="_blank" rel="external">How to Maximise CPU Performance for SQL Server on Windows</a>,来了解更多关于这个测试的信息以及问题分析</li>
 </ul>
 </li>
-<li>网络带宽<ul>
+<li><p><strong>网络带宽</strong></p>
+<ul>
 <li>在一个高度可扩展的系统中，日至生成服务器和被测系统之间的网络使用率可能超过千兆速率。如果要提高带宽容量，你可以使用万兆以太网或者为两端的多个千兆以太网适配器配置NIC组，并且将两端兼容LACP的设备切换到LACP模式。首先，需要配置网络交换机，是的LACP可以使用你的交换机文档，然后在服务器管理窗口，为已经连接到同一个交换机的网卡配置NIC组。</li>
 <li>运行一个HammerDB工作流，同时通过任务管理器确认网络带宽已经超过千兆。</li>
 </ul>
 </li>
-<li><p>SQL Server的属性</p>
+<li><p><strong>SQL Server的属性</strong></p>
 <ul>
 <li><p>你可以根据你已有的硬件，使用图形化工具或者手工操作对SQL Server进行配置。下面的例子展示了内存在256GB到512GB时使用的一个配置。</p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exec sp_configure '<span class="operator"><span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">', '</span><span class="number">1</span><span class="string">' </span><br><span class="line">reconfigure with overrideexec sp_configure '</span><span class="keyword">min</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 256000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 512000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">recovery</span> <span class="built_in">interval</span><span class="string">','</span><span class="number">32767</span><span class="string">' </span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> degree <span class="keyword">of</span> parallelism<span class="string">','</span><span class="number">1</span><span class="string">' </span><br><span class="line">exec sp_configure '</span>lightweight pooling<span class="string">','</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">priority</span> boost<span class="string">', '</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">max</span> worker threads<span class="string">', 3000 </span><br><span class="line">exec sp_configure '</span><span class="keyword">default</span> <span class="keyword">trace</span> enabled<span class="string">', 0 </span><br><span class="line">goreconfigure with override</span></span></span><br></pre></td></tr></table></figure>
@@ -145,11 +149,12 @@ SQ">
 </li>
 </ul>
 </li>
-<li>创建数据库<ul>
+<li><p><strong>创建数据库</strong></p>
+<ul>
 <li>受益于多个核心，在数据库服务器中直接创建HammerDB计划会更快，并且不需要通过网络来传输所有的数据。首先，提前创建一个名为<em>tpcc(或者其他名字)</em>的空数据库，这样做可以提前选择和配置你的存储。确保初始的DATA文件足够大(例如4槽200GB)，这样可以避免文件在测试中的持续增长，从而影响部分性能。你也可以设置自动增长属性，让文件大小在必须增长的情况下，一次增加足够的大小，避免二次性能开销。</li>
 </ul>
 </li>
-<li><p>计划的创建与配置</p>
+<li><p><strong>计划的创建与配置</strong></p>
 <ul>
 <li>在创建HammerDB SQL Server计划时，记得在<em>Schema</em>选项中选择<em>Updated</em>。这个计划选项可以提供更好的性能，因为<em>Original</em>选项需要对HammerDB的早期版本保持兼容性。</li>
 <li><p>创建完成后马上对<em>TPCC</em>数据库进行备份，最简单的方式就是停止SQL Server服务器，然后将<em>TPCC</em> DATA和LOG文件复制到备份文件夹。如果要重置计划，只需要删除现有的计划，将DATA和LOG文件从备份文件夹中拷贝回来，然后使用ATTACH命令将原始的数据库添加回来，再使用下面的命令配置该计划。</p>
@@ -157,16 +162,49 @@ SQ">
 </li>
 </ul>
 </li>
-<li><p>分割历史表</p>
+<li><p><strong>分割历史表</strong></p>
 <ul>
 <li><p>对于高度可扩展的系统来说，分割历史表可以减少插入冲突，无论是在你使用SQL Server Management Studio或者运行语句时。下面的语句根据仓库数量修改高亮部分的数值，每100个仓库划为1个分区。</p>
   <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE [tpcc]</span><br><span class="line">GO</span><br><span class="line">BEGIN TRANSACTION</span><br><span class="line">CREATE PARTITION FUNCTION [<span class="link_label">HISTORY_PART</span>](<span class="link_url">int</span>) AS RANGE LEFT FOR VALUES (1, 100, 200, 300, 400, 500, 600, 700, 800, 900)</span><br><span class="line">CREATE PARTITION SCHEME [HISTORY<span class="emphasis">_PART] AS PARTITION [HISTORY_</span>PART] TO ([PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY])</span><br><span class="line">CREATE CLUSTERED INDEX [<span class="link_label">ClusteredIndex_on_HISTORY_PART_634589363881526517</span>] ON [<span class="link_label">dbo</span>].[<span class="link_label">history</span>] ( [<span class="link_label">h_w_id</span>] )WITH (SORT<span class="emphasis">_IN_</span>TEMPDB = OFF, IGNORE<span class="emphasis">_DUP_</span>KEY = OFF, DROP<span class="emphasis">_EXISTING = OFF, ONLINE = OFF) ON [HISTORY_</span>PART]([h<span class="emphasis">_w_</span>id])</span><br><span class="line">DROP INDEX [ClusteredIndex<span class="emphasis">_on_</span>HISTORY<span class="emphasis">_PART_</span>634589363881526517] ON [dbo].[history] WITH ( ONLINE = OFF )</span><br><span class="line">COMMIT TRANSACTION</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><p>调整事务日志文件的大小</p>
+<li><p><strong>调整事务日志文件的大小</strong></p>
 <ul>
 <li>当恢复间隔被设置为最大值时，会在事务日志大小超过预设的70%时设置一个检查点。因为高性能依赖于你的数据文件的IO写入速率，设置检查点时会对IO造成显著的影响，下面的HammerDB事务统计图说明了这一点。</li>
+<li><p>如果要观察<em>checkpoint</em>事件，需要设置DBCC命令追踪3502，3504和3605并且打开错误日志。</p>
+<blockquote>
+<p>2014-01-15 14:04:35.18 spid56 DBCC TRACEON 3502, server process ID (SPID) 56. This is an informational message only; no user action is required.  </p>
+<p>2014-01-15 14:06:52.74 spid56 DBCC TRACEON 3502, server process ID (SPID) 56. This is an informational message only; no user action is required.</p>
+<p>2014-01-15 14:06:52.74 spid56 DBCC TRACEON 3502, server process ID (SPID) 56. This is an informational message only; no user action is required.</p>
+</blockquote>
+</li>
+<li><p>下面的例子告诉我们检查点的设置以1GB/s的速度写入数据，过程持续了14.7s，期间伴随着性能的显著下降。</p>
+<blockquote>
+<p>2014-01-16 11:41:11.75 spid20s FlushCache: cleaned up 1932082 bufs with 948934 writes in 14739 ms (avoided 25317 new dirty bufs) for db 5:0</p>
+<p>2014-01-16 11:41:11.75 spid20s average throughput: 1024.11 MB/sec, I/O saturation: 418155, context switches 562834</p>
+<p>2014-01-16 11:41:11.75 spid20s last target outstanding: 31729, avgWriteLatency 26</p>
+<p>2014-01-16 11:41:11.75 spid20s About to log Checkpoint end.</p>
+</blockquote>
+</li>
+<li><p>如果要将设置检查点的事件推迟到测试完成后进行，需要重新设置日志文件的大小。日志文件太小会导致检查点在测试完成之前进行设置，文件设置太大又会影响性能。下面的例子将日志文件的大小设置为64GB。</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> tpcc</span><br><span class="line">dbcc shrinkfile(<span class="string">'tpcc_log'</span>,truncateonly)</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> tpcc <span class="keyword">modify</span> <span class="keyword">file</span> (<span class="keyword">name</span>=<span class="string">'tpcc_log'</span>, <span class="keyword">size</span>=<span class="number">64000</span>)</span><br><span class="line">dbcc loginfo(<span class="string">'tpcc'</span>)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如图11所示，勾选<em>Checkpoint when complete</em>进行设置，让检查点在测试完成后进行设置。</p>
+</li>
+<li>如图12所示，检验完整测试的性能表现，确保事务统计曲线是平坦的，这表明SQL Server的性能没有因为设置检查点而受到影响。</li>
+</ul>
+</li>
+<li><p><strong>监控</strong></p>
+<ul>
+<li>使用<a href="https://sourceforge.net/projects/mssqlserverscri/" target="_blank" rel="external">Open Source Fusion-IO MS SQL Server scripts</a>找出性能瓶颈。在下面的例子中，写日志是主要的性能瓶颈，因此，增大日志写入的IO带宽是提升性能的最佳手段(此时CPU未饱和)。</li>
+<li>如果单负载生成客户端(非被测服务器)上面的CPU已经满负载，我们可以使用多个负载测试客户端。通过主从功能，可以同时使用2个客户端驱动负载。如果服务器上面的CPU没有满负载也没有找到其他的性能瓶颈例如IO或者网络，那么我们可以在负载生成客户端增加虚拟用户数量。</li>
+</ul>
+</li>
+<li><p><strong>处理器组关联</strong></p>
+<ul>
+<li>Windows Server 2008以及更早期版本最高只支持64个处理器。Windows Server 2008 R2、2012和2012 R2最高支持256个处理器并且将这些处理器每64个划分为1个处理器组，通过管理处理器组的方式提高Windows的性能。例如，拥有120个逻辑处理器的Windows Server 2012 R2将这些处理器分为2个处理器组，每组60个处理器。HammerDB Matrix工具可以用来说明SQL Server中处理器组的用法。</li>
+<li>绝大多数应用(包括HammerDB客户端都只能运行在一个处理器组中)。SQL Server能够跨处理器组进行操作，也可以在特定的测试中将客户端的连接限制在一个或几个处理器组。</li>
 </ul>
 </li>
 </ol>
@@ -174,7 +212,7 @@ SQ">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cikzldmjb0000pf8a9z206jag" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cil0zu7f200002l8a6stl7h4s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HammerDB/">HammerDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/">Test</a></li></ul>
