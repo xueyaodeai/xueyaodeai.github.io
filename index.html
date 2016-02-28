@@ -30,7 +30,7 @@
   <div id="overlay"></div>
   <div id="header-outer" class="outer">
     <div id="profile_img">
-      <img id="circle_img" src="http://7i7gvf.com1.z0.glb.clouddn.com/img001.jpg" />
+      <img id="circle_img" src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.44.48.png" />
     </div>
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
@@ -81,29 +81,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-<ul>
-<li><a href="#microsoft-sql-server-oltp-测试最佳实践">Microsoft SQL Server OLTP 测试最佳实践</a><ul>
-<li><a href="#sql-server-性能和可扩展性的最佳实践">SQL Server 性能和可扩展性的最佳实践</a><ul>
-<li><a href="#1-cpu内存和io">1. <strong>CPU、内存和IO</strong></a></li>
-<li><a href="#2-bios设置">2. <strong>BIOS设置</strong></a></li>
-<li><a href="#3-电源选项">3. <strong>电源选项</strong></a></li>
-<li><a href="#4-验证单线程性能">4. <strong>验证单线程性能</strong></a></li>
-<li><a href="#5-网络带宽">5. <strong>网络带宽</strong></a></li>
-<li><a href="#6-sql-server的属性">6. <strong>SQL Server的属性</strong></a></li>
-<li><a href="#7-创建数据库">7. <strong>创建数据库</strong></a></li>
-<li><a href="#8-计划的创建与配置">8. <strong>计划的创建与配置</strong></a></li>
-<li><a href="#9-分割历史表">9. <strong>分割历史表</strong></a></li>
-<li><a href="#10-调整事务日志文件的大小">10. <strong>调整事务日志文件的大小</strong></a></li>
-<li><a href="#11-监控">11. <strong>监控</strong></a></li>
-<li><a href="#12-处理器组关联">12. <strong>处理器组关联</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5"><a href="#Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5" class="headerlink" title="Microsoft SQL Server OLTP 测试最佳实践"></a>Microsoft SQL Server OLTP 测试最佳实践</h1><ul>
+        <h1 id="Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5"><a href="#Microsoft_SQL_Server_OLTP__u6D4B_u8BD5_u6700_u4F73_u5B9E_u8DF5" class="headerlink" title="Microsoft SQL Server OLTP 测试最佳实践"></a>Microsoft SQL Server OLTP 测试最佳实践</h1><ul>
 <li>这篇文档在HammerDB和SQL Server的配置方面提供建议和指导，以便达到在之后的HammerDB OLTP测试中达到比较好的吞吐量。</li>
 <li>不过有很重要的一点需要注意，测试的最佳实践往往关注与性能，期望获取到当前系统能达到的最高吞吐量的数据；这在生产环境中未必是最好的方案，因为发生故障后的可恢复性才是生产环境关注的重点。</li>
 </ul>
@@ -121,37 +99,52 @@
 <li>我们经常会犯一个错误，接受高性能的默认设置，让其设置一系列较低层次的BIOS选项，而不去验证这些选项的具体功能。高性能的默认设置往往会导致数据库性能表现不佳。</li>
 </ul>
 <h3 id="3-__u7535_u6E90_u9009_u9879"><a href="#3-__u7535_u6E90_u9009_u9879" class="headerlink" title="3. <strong>电源选项</strong>"></a>3. <strong>电源选项</strong></h3><ul>
-<li>打开windows系统的电源选项框，选择<strong>高性能</strong></li>
+<li><p>打开windows系统的电源选项框，选择<strong>高性能</strong></p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2021.41.16.png" alt="Figure 1 Power Plan"></p>
+</li>
 </ul>
 <h3 id="4-__u9A8C_u8BC1_u5355_u7EBF_u7A0B_u6027_u80FD"><a href="#4-__u9A8C_u8BC1_u5355_u7EBF_u7A0B_u6027_u80FD" class="headerlink" title="4. <strong>验证单线程性能</strong>"></a>4. <strong>验证单线程性能</strong></h3><ul>
 <li><p>为了验证你达到了CPU单线程的最大性能，你可以创建并运行下面的存储过程<em>stored procedure</em></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">USE</span> [tpcc]<span class="keyword">GO</span><span class="keyword">SET</span> ANSI_NULLS <span class="keyword">ON</span><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> [dbo].[CPUSIMPLE]</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">BEGIN</span></span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">n</span> <span class="built_in">numeric</span>(<span class="number">16</span>,<span class="number">6</span>) = <span class="number">0</span>,</span><br><span class="line">            @a DATETIME,</span><br><span class="line">            @b DATETIME</span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @<span class="keyword">f</span> <span class="built_in">int</span></span><br><span class="line">        <span class="keyword">SET</span> @<span class="keyword">f</span> = <span class="number">1</span>        <span class="keyword">SET</span> @a = <span class="keyword">CURRENT_TIMESTAMP</span>        <span class="keyword">WHILE</span> @<span class="keyword">f</span> &lt;= <span class="number">10000000</span>            <span class="keyword">BEGIN</span>        <span class="keyword">SET</span> @<span class="keyword">n</span> = @<span class="keyword">n</span> % <span class="number">999999</span> + <span class="keyword">sqrt</span>(@<span class="keyword">f</span>)</span><br><span class="line">                <span class="keyword">SET</span> @<span class="keyword">f</span> = @<span class="keyword">f</span> + <span class="number">1</span></span><br><span class="line">            <span class="keyword">END</span>        <span class="keyword">SET</span> @b = <span class="keyword">CURRENT_TIMESTAMP</span>        PRINT <span class="string">'Timing = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(<span class="keyword">DATEDIFF</span>(MS, @a, @b)<span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)</span><br><span class="line">        PRINT <span class="string">'Res = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(@<span class="keyword">n</span> <span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)<span class="keyword">END</span></span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在任意的数据库中，通过运行上面的代码创建存储过程<em>stored procedure</em></p>
+</ul>
+<ul>
+<li><p>如图2，在任意的数据库中，通过运行上面的代码创建存储过程<em>stored procedure</em></p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2021.41.29.png" alt="Figure 2 Create Procedure"></p>
 </li>
 <li><p>右键点击CPUSIMPLE，并且点击执行存储过程<em>stored procedure</em>，点击OK并等待。如果运行成功会返回0值，点击信息查看程序运行时间，例如：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Timing = 8250Res = 873729.721235(1 row(s) affected)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Timing = 8250Res = 873729.721235</span><br><span class="line">(1 row(s) affected)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2021.41.43.png" alt="Figure 3 Run Procedure"></p>
 </li>
-<li><p>在这个案例中，存储过程运行时间为8.2秒。实际性能表现依赖于使用的CPU，通常最新的CPU都应该在10s内完成这个事务。</p>
-</li>
+<li>在这个案例中，存储过程运行时间为8.2秒。实际性能表现依赖于使用的CPU，通常最新的CPU都应该在10s内完成这个事务。</li>
 <li>你可以阅读这篇博客<a href="https://communities.intel.com/community/itpeernetwork/datastack/blog/2014/03/04/how-to-maximise-cpu-performance-for-sql-server-on-windows" target="_blank" rel="external">How to Maximise CPU Performance for SQL Server on Windows</a>,来了解更多关于这个测试的信息以及问题分析</li>
 </ul>
 <h3 id="5-__u7F51_u7EDC_u5E26_u5BBD"><a href="#5-__u7F51_u7EDC_u5E26_u5BBD" class="headerlink" title="5. <strong>网络带宽</strong>"></a>5. <strong>网络带宽</strong></h3><ul>
-<li>在一个高度可扩展的系统中，日至生成服务器和被测系统之间的网络使用率可能超过千兆速率。如果要提高带宽容量，你可以使用万兆以太网或者为两端的多个千兆以太网适配器配置NIC组，并且将两端兼容LACP的设备切换到LACP模式。首先，需要配置网络交换机，是的LACP可以使用你的交换机文档，然后在服务器管理窗口，为已经连接到同一个交换机的网卡配置NIC组。</li>
-<li>运行一个HammerDB工作流，同时通过任务管理器确认网络带宽已经超过千兆。</li>
+<li><p>在一个高度可扩展的系统中，日至生成服务器和被测系统之间的网络使用率可能超过千兆速率。如果要提高带宽容量，你可以使用万兆以太网或者为两端的多个千兆以太网适配器配置NIC组，并且将两端兼容LACP的设备切换到LACP模式。首先，需要配置网络交换机，是的LACP可以使用你的交换机文档，然后在服务器管理窗口，为已经连接到同一个交换机的网卡配置NIC组。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2021.42.05.png" alt="Figure 4 NIC Teaming"></p>
+</li>
+<li><p>运行一个HammerDB工作流，同时通过任务管理器确认网络带宽已经超过千兆。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.11.51.png" alt="Figure 5 Task Manager"></p>
+</li>
 </ul>
 <h3 id="6-_SQL_Server_u7684_u5C5E_u6027"><a href="#6-_SQL_Server_u7684_u5C5E_u6027" class="headerlink" title="6. <strong>SQL Server的属性</strong>"></a>6. <strong>SQL Server的属性</strong></h3><ul>
 <li><p>你可以根据你已有的硬件，使用图形化工具或者手工操作对SQL Server进行配置。下面的例子展示了内存在256GB到512GB时使用的一个配置。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exec sp_configure '<span class="operator"><span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">', '</span><span class="number">1</span><span class="string">'</span><br><span class="line">reconfigure with overrideexec sp_configure '</span><span class="keyword">min</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 256000</span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 512000</span><br><span class="line">exec sp_configure '</span><span class="keyword">recovery</span> <span class="built_in">interval</span><span class="string">','</span><span class="number">32767</span><span class="string">'</span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> degree <span class="keyword">of</span> parallelism<span class="string">','</span><span class="number">1</span><span class="string">'</span><br><span class="line">exec sp_configure '</span>lightweight pooling<span class="string">','</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">priority</span> boost<span class="string">', '</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">max</span> worker threads<span class="string">', 3000</span><br><span class="line">exec sp_configure '</span><span class="keyword">default</span> <span class="keyword">trace</span> enabled<span class="string">', 0</span><br><span class="line">goreconfigure with override</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.12.11.png" alt="Figure 6 Server Properties"></p>
 </li>
 <li><p>同时注意把处理器关联性<em>Processor Affinity</em>设置为自动模式</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.12.44.png" alt="Figure 7 Processor Affinity"></p>
 </li>
 </ul>
 <h3 id="7-__u521B_u5EFA_u6570_u636E_u5E93"><a href="#7-__u521B_u5EFA_u6570_u636E_u5E93" class="headerlink" title="7. <strong>创建数据库</strong>"></a>7. <strong>创建数据库</strong></h3><ul>
-<li>受益于多个核心，在数据库服务器中直接创建HammerDB计划会更快，并且不需要通过网络来传输所有的数据。首先，提前创建一个名为<em>tpcc(或者其他名字)</em>的空数据库，这样做可以提前选择和配置你的存储。确保初始的DATA文件足够大(例如4槽200GB)，这样可以避免文件在测试中的持续增长，从而影响部分性能。你也可以设置自动增长属性，让文件大小在必须增长的情况下，一次增加足够的大小，避免二次性能开销。</li>
+<li><p>受益于多个核心，在数据库服务器中直接创建HammerDB计划会更快，并且不需要通过网络来传输所有的数据。首先，提前创建一个名为<em>tpcc(或者其他名字)</em>的空数据库，这样做可以提前选择和配置你的存储。确保初始的DATA文件足够大(例如4槽200GB)，这样可以避免文件在测试中的持续增长，从而影响部分性能。你也可以设置自动增长属性，让文件大小在必须增长的情况下，一次增加足够的大小，避免二次性能开销。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.13.00.png" alt="Figure 8 Create Database"></p>
+</li>
 </ul>
 <h3 id="8-__u8BA1_u5212_u7684_u521B_u5EFA_u4E0E_u914D_u7F6E"><a href="#8-__u8BA1_u5212_u7684_u521B_u5EFA_u4E0E_u914D_u7F6E" class="headerlink" title="8. <strong>计划的创建与配置</strong>"></a>8. <strong>计划的创建与配置</strong></h3><ul>
-<li>在创建HammerDB SQL Server计划时，记得在<em>Schema</em>选项中选择<em>Updated</em>。这个计划选项可以提供更好的性能，因为<em>Original</em>选项需要对HammerDB的早期版本保持兼容性。</li>
+<li><p>在创建HammerDB SQL Server计划时，记得在<em>Schema</em>选项中选择<em>Updated</em>。这个计划选项可以提供更好的性能，因为<em>Original</em>选项需要对HammerDB的早期版本保持兼容性。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.13.14.png" alt="Figure 9 Updated Schema"></p>
+</li>
 <li><p>创建完成后马上对<em>TPCC</em>数据库进行备份，最简单的方式就是停止SQL Server服务器，然后将<em>TPCC</em> DATA和LOG文件复制到备份文件夹。如果要重置计划，只需要删除现有的计划，将DATA和LOG文件从备份文件夹中拷贝回来，然后使用ATTACH命令将原始的数据库添加回来，再使用下面的命令配置该计划。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> <span class="keyword">RECOVERY</span> SIMPLE</span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> TORN_PAGE_DETECTION <span class="keyword">OFF</span></span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> PAGE_VERIFY <span class="keyword">NONE</span></span><br><span class="line"><span class="keyword">GO</span></span></span><br></pre></td></tr></table></figure>
 </li>
@@ -162,7 +155,9 @@
 </li>
 </ul>
 <h3 id="10-__u8C03_u6574_u4E8B_u52A1_u65E5_u5FD7_u6587_u4EF6_u7684_u5927_u5C0F"><a href="#10-__u8C03_u6574_u4E8B_u52A1_u65E5_u5FD7_u6587_u4EF6_u7684_u5927_u5C0F" class="headerlink" title="10. <strong>调整事务日志文件的大小</strong>"></a>10. <strong>调整事务日志文件的大小</strong></h3><ul>
-<li>当恢复间隔被设置为最大值时，会在事务日志大小超过预设的70%时设置一个检查点。因为高性能依赖于你的数据文件的IO写入速率，设置检查点时会对IO造成显著的影响，下面的HammerDB事务统计图说明了这一点。</li>
+<li><p>当恢复间隔被设置为最大值时，会在事务日志大小超过预设的70%时设置一个检查点。因为高性能依赖于你的数据文件的IO写入速率，设置检查点时会对IO造成显著的影响，下面的HammerDB事务统计图说明了这一点。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.13.26.png" alt="Figure 10 Reduced Performance"></p>
+</li>
 <li><p>如果要观察<em>checkpoint</em>事件，需要设置DBCC命令追踪3502，3504和3605并且打开错误日志。</p>
 <blockquote>
 <p>2014-01-15 14:04:35.18 spid56 DBCC TRACEON 3502, server process ID (SPID) 56. This is an informational message only; no user action is required.  </p>
@@ -182,23 +177,37 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> tpcc</span><br><span class="line">dbcc shrinkfile(<span class="string">'tpcc_log'</span>,truncateonly)</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> tpcc <span class="keyword">modify</span> <span class="keyword">file</span> (<span class="keyword">name</span>=<span class="string">'tpcc_log'</span>, <span class="keyword">size</span>=<span class="number">64000</span>)</span><br><span class="line">dbcc loginfo(<span class="string">'tpcc'</span>)</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如图11所示，勾选<em>Checkpoint when complete</em>进行设置，让检查点在测试完成后进行设置。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.13.36.png" alt="Figure 11 Checkpoint when complete"></p>
 </li>
-<li>如图12所示，检验完整测试的性能表现，确保事务统计曲线是平坦的，这表明SQL Server的性能没有因为设置检查点而受到影响。</li>
+<li><p>如图12所示，检验完整测试的性能表现，确保事务统计曲线是平坦的，这表明SQL Server的性能没有因为设置检查点而受到影响。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.14.01.png" alt="Figure 12 Consistent Performance"></p>
+</li>
 </ul>
 <h3 id="11-__u76D1_u63A7"><a href="#11-__u76D1_u63A7" class="headerlink" title="11. <strong>监控</strong>"></a>11. <strong>监控</strong></h3><ul>
 <li>使用<a href="https://sourceforge.net/projects/mssqlserverscri/" target="_blank" rel="external">Open Source Fusion-IO MS SQL Server scripts</a>找出性能瓶颈。在下面的例子中，写日志是主要的性能瓶颈，因此，增大日志写入的IO带宽是提升性能的最佳手段(此时CPU未饱和)。</li>
-<li>如果单负载生成客户端(非被测服务器)上面的CPU已经满负载，我们可以使用多个负载测试客户端。通过主从功能，可以同时使用2个客户端驱动负载。如果服务器上面的CPU没有满负载也没有找到其他的性能瓶颈例如IO或者网络，那么我们可以在负载生成客户端增加虚拟用户数量。</li>
+<li><p>如果单负载生成客户端(非被测服务器)上面的CPU已经满负载，我们可以使用多个负载测试客户端。通过主从功能，可以同时使用2个客户端驱动负载。如果服务器上面的CPU没有满负载也没有找到其他的性能瓶颈例如IO或者网络，那么我们可以在负载生成客户端增加虚拟用户数量。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.14.10.png" alt="Figure 13 Fusion-IO SQL Server Scripts"></p>
+</li>
 </ul>
-<h3 id="12-__u5904_u7406_u5668_u7EC4_u5173_u8054"><a href="#12-__u5904_u7406_u5668_u7EC4_u5173_u8054" class="headerlink" title="12. <strong>处理器组关联</strong>"></a>12. <strong>处理器组关联</strong></h3><ul>
-<li>Windows Server 2008以及更早期版本最高只支持64个处理器。Windows Server 2008 R2、2012和2012 R2最高支持256个处理器并且将这些处理器每64个划分为1个处理器组，通过管理处理器组的方式提高Windows的性能。例如，拥有120个逻辑处理器的Windows Server 2012 R2将这些处理器分为2个处理器组，每组60个处理器。HammerDB Matrix工具可以用来说明SQL Server中处理器组的用法。</li>
-<li>绝大多数应用(包括HammerDB客户端都只能运行在一个处理器组中)。尽管SQL Server能够跨处理器组进行操作，但可能将单个测试的客户端的连接限制在一个或几个处理器组。一旦初始分配会没有跨处理器组，那么性能和CPU利用率可能会被人为限制住。当处理器组限制出现在“线程和CPU”的顶级等待事件中，使用之前提及的FusionIO Monitoring Scripts。运行测试的目的是充分利用所有CPU以达到更好的性能。修改调度时间会影响处理器组的调度。为了达到这个平衡，在HammerDB虚拟用户选项中，将<em>User Delay</em>参数修改为<em>10ms</em>(这个表示上一个用户登录后，下一个用户需要等待10ms)。</li>
-<li>缩短连接的时间，通常可以保证连接在服务端的连接均匀分布。可以使用图17中展示的HammerDB Metrics tool对系统进行监控，保证资源的有效利用</li>
+<h3 id="12-__u5904_u7406_u5668_u7EC4_u76F8_u5173"><a href="#12-__u5904_u7406_u5668_u7EC4_u76F8_u5173" class="headerlink" title="12. <strong>处理器组相关</strong>"></a>12. <strong>处理器组相关</strong></h3><ul>
+<li><p>Windows Server 2008以及更早期版本最高只支持64个处理器。Windows Server 2008 R2、2012和2012 R2最高支持256个处理器并且将这些处理器每64个划分为1个处理器组，通过管理处理器组的方式提高Windows的性能。例如，拥有120个逻辑处理器的Windows Server 2012 R2将这些处理器分为2个处理器组，每组60个处理器。HammerDB Matrix工具可以用来说明SQL Server中处理器组的用法。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.14.22.png" alt="Figure 14 Processor Groups"></p>
+</li>
+<li><p>绝大多数应用(包括HammerDB客户端都只能运行在一个处理器组中)。尽管SQL Server能够跨处理器组进行操作，但可能将单个测试的客户端的连接限制在一个或几个处理器组。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.14.32.png" alt="Figure 15 Processor Group Limitation"></p>
+</li>
+<li><p>一旦初始分配<em>sessions</em>的时候没有跨处理器组，那么性能和CPU利用率可能会受到人为限制。当处理器组限制出现在“线程和CPU”的顶级等待事件中，使用之前提及的FusionIO Monitoring Scripts。运行测试的目的是充分利用所有CPU以达到更好的性能。修改调度时间会影响处理器组的调度。为了达到这个平衡，在HammerDB虚拟用户选项中，将<em>User Delay</em>参数修改为<em>10ms</em>(这个表示上一个用户登录后，下一个用户需要等待10ms)。</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.14.44.png" alt="Figure 16 Virtual User Options"></p>
+</li>
+<li><p>缩短连接的时间，通常可以保证连接在服务端的连接均匀分布。可以使用图17中展示的HammerDB Metrics tool对系统进行监控，保证资源的有效利用</p>
+<p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.14.55.png" alt="Figure 17 Virtual User Options"></p>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cil6k6w7p0000dq8a4slbzpy1" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cil6o8wja0000ea8apjmpr2ue" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HammerDB/">HammerDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/">Test</a></li></ul>
@@ -290,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cil6k6w86000adq8az4io2e48" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cil6o8wjs0008ea8ae0rwfyjy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
@@ -316,7 +325,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/12/使用hexo和Github-pages搭建个人blog/">使用hexo和Github pages搭建个人blog</a>
+      <a class="article-title" href="/2015/12/12/使用hexo和Github-pages搭建个人blog/">记忆中的2班</a>
     </h1>
   
 
@@ -324,15 +333,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/img001.jpg" alt="My Love" title="Optional title attribute"></p>
-<h1 id="u751F_u547D_u662F_u4E0D_u80FD_u505C_u6B62_u7684_u821E_u8E48"><a href="#u751F_u547D_u662F_u4E0D_u80FD_u505C_u6B62_u7684_u821E_u8E48" class="headerlink" title="生命是不能停止的舞蹈"></a>生命是不能停止的舞蹈</h1>
+        <p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-24%20%E4%B8%8B%E5%8D%8810.30.32.png" alt="My Love" title="Optional title attribute"></p>
+<h1 id="u613F_u6211_u4EEC_u5F7C_u6B64_u94ED_u523B_uFF0C_u76F4_u5230_u751F_u547D_u7684_u5C3D_u5934_u3002"><a href="#u613F_u6211_u4EEC_u5F7C_u6B64_u94ED_u523B_uFF0C_u76F4_u5230_u751F_u547D_u7684_u5C3D_u5934_u3002" class="headerlink" title="愿我们彼此铭刻，直到生命的尽头。"></a>愿我们彼此铭刻，直到生命的尽头。</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cil6k6w840005dq8a9k4yqzso" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cil6o8wjq0005ea8a9og3ryh3" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
 
     </footer>
   </div>
