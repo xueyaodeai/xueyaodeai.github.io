@@ -59,6 +59,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jenkins-and-docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/03/jenkins-and-docker/" class="article-date">
+  <time datetime="2016-03-02T16:10:06.000Z" itemprop="datePublished">2016-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/03/jenkins-and-docker/">自动化技术构想</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>目前VTT的持续集成工具使用Jenkins，同时配合多个物理机作为Jenkins任务的执行机，这种搭配现在遇到了不少问题。没有对持续集成的环境进行固化，一旦环境出现问题，就会导致持续集成一系列任务的停滞；现在VTT的项目比较多的情况下，执行机是一种稀缺资源，有时候多个任务需要进行排队。现今，我就在考虑能不能使用docker来解决这些问题。</p>
+</blockquote>
+<ol>
+<li><p>持续集成环境的固化</p>
+<p> 在docker的基础上，我们并不需要重新去搭建一个Jenkins服务器，我们只需要使用已有的Jenkins镜像，再根据我们自己的需要使用Dockerfile构建一个定制的Jenkins镜像，这样我们就可以在任何支持docker的环境中快速搭建持续集成环境，即便原有的环境因为某些原因崩溃了，也可以迅速恢复。</p>
+</li>
+<li><p>替换执行机</p>
+<p> 直接使用物理机作为Jenkins任务的执行机实际上是有几个问题的，首先每一个物理机都需要我们去配置各种各样的环境，同时因为环境没有进行隔离，我们也不可能在一个物理机上同时执行太多任务，以免造成冲突。现在这种情况，我感觉是可以使用docker作为Jenkins任务的执行环境。</p>
+<p> 通过docker，我们可以在同一个物理机中对每一个任务的环境进行隔离，确保多个任务并行不会受到影响，同时也可以执行更多任务，提高物理机的利用率。</p>
+</li>
+<li><p>使用docker固化各个版本的自动化案例</p>
+<p> 目前VTT主要有3个大的分支：aDesk | SDDC | aSV，这三个版本在功能上已经有了一定的区别，自动化案例也需要根据不同的版本进行修改。除此之外，部门还有各种定制包也需要在发布前进行自动化验收测试，这些定制包的功能又可能在某些地方进行改动。</p>
+<p> 在这样的情形下，我觉得单单使用版本控制工具来做区分已经有一定难度了。通过docker，我们可以将每个分支的自动化案例进行固化，构建专属的docker镜像。在没有改动的情况下我们就是用这个镜像生成的容器完成自动化测试，在分支发布了新的版本，增加或者修改了功能，我们的docker镜像也就可以跟着版本做一次更新，将相应的自动化案例补充进去。这样做，我们就有3个分支的各个版本的docker镜像，针对特定版本的定制包我们也就可以使用相应的docker镜像进行修改，然后完成相关的自动化测试。</p>
+<p> 这些docker镜像都是通过dockerfile来生成的，它们拥有一个共同的基镜像。在自动化代码本身需要进行修改时，我们就可以修改基镜像的代码，然后重新构建这些镜像，就完成了更新。</p>
+<p> 个人认为，这样做会比使用版本控制工具更方便，更利于管理。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xueyaodeai.github.io/2016/03/03/jenkins-and-docker/" data-id="cilb3ek6u0008t78ar58unnzm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HammerDB" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/21/HammerDB/" class="article-date">
@@ -207,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cil6o8wja0000ea8apjmpr2ue" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cilb3ek6d0000t78a49wm2bdb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HammerDB/">HammerDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Test/">Test</a></li></ul>
@@ -299,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cil6o8wjs0008ea8ae0rwfyjy" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cilb3ek6w0009t78a114nknb2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
@@ -338,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cil6o8wjq0005ea8a9og3ryh3" class="article-share-link">Share</a>
+      <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cilb3ek6s0005t78a3ws0adi0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
