@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于公司项目的测试优化方案 | Allen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言
+就目前而言，公司的自动化测试最主要的发展方向还是自动验收测试，我这个季度的主要工作都是在提高自动验收测试的测试覆盖率，尽可能地保证要发布的版本在 BVT 案例上没有出现问题。这个思路本身是没有什么问题的，但是随着版本越来越多，积累的 BVT 案例也就越来越多，需要完成一次自动验收测试的时间已经远远超过之前的预期，而且项目里已经对验收测试过度依赖了。
+
+正文现状我们现在提倡“以客户为中心，产品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于公司项目的测试优化方案">
+<meta property="og:url" content="http://xueyaodeai.github.io/2016/03/27/关于公司项目的测试优化方案/index.html">
+<meta property="og:site_name" content="Allen's Blog">
+<meta property="og:description" content="前言
+就目前而言，公司的自动化测试最主要的发展方向还是自动验收测试，我这个季度的主要工作都是在提高自动验收测试的测试覆盖率，尽可能地保证要发布的版本在 BVT 案例上没有出现问题。这个思路本身是没有什么问题的，但是随着版本越来越多，积累的 BVT 案例也就越来越多，需要完成一次自动验收测试的时间已经远远超过之前的预期，而且项目里已经对验收测试过度依赖了。
+
+正文现状我们现在提倡“以客户为中心，产品">
+<meta property="og:image" content="http://xueyaodeai.github.io/images/no_1.png">
+<meta property="og:updated_time" content="2016-03-27T15:50:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于公司项目的测试优化方案">
+<meta name="twitter:description" content="前言
+就目前而言，公司的自动化测试最主要的发展方向还是自动验收测试，我这个季度的主要工作都是在提高自动验收测试的测试覆盖率，尽可能地保证要发布的版本在 BVT 案例上没有出现问题。这个思路本身是没有什么问题的，但是随着版本越来越多，积累的 BVT 案例也就越来越多，需要完成一次自动验收测试的时间已经远远超过之前的预期，而且项目里已经对验收测试过度依赖了。
+
+正文现状我们现在提倡“以客户为中心，产品">
+<meta name="twitter:image" content="http://xueyaodeai.github.io/images/no_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Allen&#39;s Blog" type="application/atom+xml">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="overlay"></div>
+  <div id="header-outer" class="outer">
+    <div id="profile_img">
+      <img id="circle_img" src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.44.48.png" />
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Allen&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-menu">
+      <nav id="main-nav">
+        <ul>
+        
+          <li><a href="/"><i class="fa fa-home icon-setting"></i></a></li>
+        
+          <li><a href="/archives"><i class="fa fa-archive icon-setting"></i></a></li>
+        
+          <li><a href="/about"><i class="fa fa-user icon-setting"></i></a></li>
+        
+        
+          <li><a href="/atom.xml"><i class="fa fa-rss %> icon-setting"></i></a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-关于公司项目的测试优化方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/27/关于公司项目的测试优化方案/" class="article-date">
+  <time datetime="2016-03-27T13:53:06.000Z" itemprop="datePublished">2016-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于公司项目的测试优化方案
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>就目前而言，公司的自动化测试最主要的发展方向还是自动验收测试，我这个季度的主要工作都是在提高自动验收测试的测试覆盖率，尽可能地保证要发布的版本在 BVT 案例上没有出现问题。这个思路本身是没有什么问题的，但是随着版本越来越多，积累的 BVT 案例也就越来越多，需要完成一次自动验收测试的时间已经远远超过之前的预期，而且项目里已经对验收测试过度依赖了。</p>
+</blockquote>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h2><p>我们现在提倡“以客户为中心，产品需要满足客户的需求”，从这方面来说，持续维护和发展自动验收测试是一个非常不错的选择，因为现有的验收测试案例大部分是以用户使用场景来设计的，同时尽可能覆盖多种条件。除此之外，无论是开发人员、测试人员还是版本经理，目前都倾向于使用大范围地这种测试方式：</p>
+<ul>
+<li>有了验收测试，<strong>开发人员</strong>可以把大部分测试工作（比如<strong>单元测试</strong>）转交给别人，他们只需要对自己的代码进行非常简单的验证即可，大大节省了他们的时间。</li>
+<li>有了验收测试，<strong>测试人员</strong>可以跳过这部分的功能测试，把更多时间用于验证<strong>新功能</strong>或者部分<strong>功能的改动</strong></li>
+<li>有了验收测试，<strong>版本经理</strong>可以根据验收测试的结果判断这个版本能不能发布，有没有风险。</li>
+</ul>
+<blockquote>
+<p>！！！但是，自动验收测试不是万能药，不是所有的东西都可以直接交给它搞定的。</p>
+</blockquote>
+<h2 id="目前的问题"><a href="#目前的问题" class="headerlink" title="目前的问题"></a>目前的问题</h2><p>现在项目组的自动验收测试的流程如下：</p>
+<blockquote>
+<ol>
+<li>使用最新代码构建新版本；</li>
+<li>构建完成后通过 Jenkins 或者手工部署到测试环境；</li>
+<li>通过测试平台将所有的验收测试案例在这个测试环境中运行；</li>
+<li>案例全部执行完成后，汇总测试结果提交到统一的平台上，版本经理到上面查看测试报告，然后决定这个版本能不能正常发布。</li>
+</ol>
+</blockquote>
+<p>在这个流程中，为了保证发布版本的质量，一般验收测试的成功率要在90%以上，并且没有严重问题才可以发布。然而，自动验收测试的时间很长，而且还在持续增长，而且我们很可能遇到下面这种情形：</p>
+<p><img src="/images/no_1.png" alt="每天验收测试结果"></p>
+<p>从自动验收测试中得到的仅仅是失败的案例，需要进一步根据日志或者其他东西来追溯失败的根源，确认这个失败案例到底是不是一个 bug。这个流程的耗时太长了，而且会经常因为环境问题毁掉整个验收测试。然后开发人员着手修复这个问题，修复的成果也要到第二天才能确认，反馈根本没有办法即时传达。</p>
+<h2 id="测试的价值体现"><a href="#测试的价值体现" class="headerlink" title="测试的价值体现"></a>测试的价值体现</h2><p>正常情况下，除了需求评审、设计案例，我们测试人员的主要工作在于发现 bug，然后将提交给开发，接下来修复 bug 的工作就交接给开发人员了，我们就此止步。</p>
+<p>那么从“以客户为中心”这个角度出发，自动验收测试中失败的案例如何体现出价值，如何让用户受益？</p>
+<blockquote>
+<p>结论是：失败的案例并没有让用户直接受益。真正能让用户受益的是 bug 的修复。</p>
+</blockquote>
+<p>要修复一个 bug，你首先要找出 bug，而这个依赖于捕获 bug 的测试。因此，从案例不通过到 bug 修复的整个流程中，只有最后一步才能产生价值。然而，在自动验收测试中，这个流程的步骤太多了，耗时太长了，缺乏理想反馈回路的基本属性：</p>
+<blockquote>
+<ul>
+<li><strong>迅捷</strong>。没有开发人员愿意等上数个小时或者数日来弄清楚他们的代码改动是否起作用。有时候，代码改动并不起作用——人无完人——反馈回路需要运行多次。更加迅捷的反馈回路带来更加迅捷的代码修复。如果回路足够迅速，开发人员甚至可以在签入代码改动前就运行测试。</li>
+<li><strong>可靠</strong>。没有开发人员愿意花费数个小时对测试进行排错，却发现只是测试不稳定。不稳定的测试降低了开发人员对测试的信任，结果就是不稳定的测试常常被忽略，即使在它们发现了真正的产品问题的时候。目前，自动验收测试这方面的问题还是比较严重的，很多失败的案例到最后发现是环境问题。</li>
+<li><strong>隔离故障点</strong>。为修复一个bug，开发人员需要明确找到引起bug的那些行代码。当产品包含数百万行代码，bug可能存在于任何地方的时候，这像是大海捞针。自动验收测试的失败案例往往只包含简单的错误信息，需要花费大量的时间通过日志排查错误的代码，效率相当低下。</li>
+</ul>
+</blockquote>
+<h2 id="下一步的完善点"><a href="#下一步的完善点" class="headerlink" title="下一步的完善点"></a>下一步的完善点</h2><p>自动验收测试的主要作用应该是用于确保即将发布的最后版本没有问题，而不是尽可能找出所有的 bug。</p>
+<p>将自动验收测试用于日常版本的质量保证是不恰当的，它过于臃肿，规模太过庞大。现在的验收测试案例往往包含了很多个测试点，出现失败案例要花很多时间去排查出错的代码，同时这些测试点交叉出现在多个测试案例中，使得自动验收测试的完成时间很长，综上两点使得日常版本构建的反馈不理想。</p>
+<p>在日常测试版本的快速迭代中，我们应该考虑用更小规模的测试——<strong>单元测试</strong>，来保证质量。</p>
+<blockquote>
+<ul>
+<li><strong>单元测试具有迅捷性</strong>。我们只需要构建小的单元进行测试，测试也趋向于小规模。这样的小粒度的测试相比及自动验收测试，反馈更快，更迅捷。</li>
+<li><strong>单元测试具有可靠性</strong>。简单的系统和小的单元一般倾向于较少受到测试不稳定的影响——尤其在封闭测试的实践中——将彻底地去除不稳定性。</li>
+<li><strong>单元测试会隔离故障点</strong>。纵然产品包含数百万行代码，如果单元测试未通过，伱只需要查找被测单元就能找到bug。比起自动验收测试，单元测试的错误代码的定位速度要快无数倍。</li>
+</ul>
+</blockquote>
+<p>当目前版本的功能已经稳定时，我们可以考虑构建当前版本的里程碑。这个时候，我们就应该使用自动验收测试，来保证系统整体功能的良好运作。</p>
+<h2 id="补充点"><a href="#补充点" class="headerlink" title="补充点"></a>补充点</h2><p>鉴于我们产品的部分功能是只在 UI 上有效的，我们也应该考虑再加入一部分浏览器的端对端测试，以此来保证产品 UI 部分功能的有效性。</p>
+<p>通过 casperjs 或者 nightmarejs 框架可以在不使用浏览器的情况下直接测试页面功能的有效性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xueyaodeai.github.io/2016/03/27/关于公司项目的测试优化方案/" data-id="cimaqtnjv000ck28a7dktm32a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自动化/">自动化</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/03/jenkins-and-docker/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自动化技术构想</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Allen<br>
+      <a href="https://github.com/ken8203/hexo-theme-alberta" target="_blank">Alberta</a> by <a href="http://jaychung.tw" target="_blank">jaychung</a>. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Thank <a href="http://subtlepatterns.com/" target="_blank">Subtlepatterns</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//imsky.github.io/holder/holder.js"></script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
