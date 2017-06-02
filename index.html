@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Share some of my idea">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Allen's Blog">
+<meta property="og:title" content="Allen&#39;s Blog">
 <meta property="og:url" content="http://xueyaodeai.github.io/index.html">
-<meta property="og:site_name" content="Allen's Blog">
+<meta property="og:site_name" content="Allen&#39;s Blog">
 <meta property="og:description" content="Share some of my idea">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allen's Blog">
+<meta name="twitter:title" content="Allen&#39;s Blog">
 <meta name="twitter:description" content="Share some of my idea">
     
 
@@ -149,7 +149,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                5
+                6
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -181,6 +181,125 @@
 
             
             <section id="main">
+    <article id="post-Hello-World" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/08/09/Hello-World/">Hello World</a>
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/08/09/Hello-World/">
+            <time datetime="2016-08-09T14:54:03.000Z" itemprop="datePublished">2016-08-09</time>
+        </a>
+    </div>
+
+
+                    
+                    
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xueyaodeai.github.io/2016/08/09/Hello-World/" data-id="cj3g55p8h0002z7fys6ny01e9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="/2016/08/09/Hello-World/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="/2016/08/09/Hello-World/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-关于公司项目的测试优化方案" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -277,7 +396,7 @@
 
 </div>
 
-    <a data-url="http://xueyaodeai.github.io/2016/03/27/关于公司项目的测试优化方案/" data-id="cin67hj1x0006gt8aws2g5ufq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xueyaodeai.github.io/2016/03/27/关于公司项目的测试优化方案/" data-id="cj3g55p8t0009z7fy5e0eowu3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -414,7 +533,7 @@
 
 </div>
 
-    <a data-url="http://xueyaodeai.github.io/2016/03/03/jenkins-and-docker/" data-id="cin67hj1v0003gt8arb1w8tky" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xueyaodeai.github.io/2016/03/03/jenkins-and-docker/" data-id="cj3g55p8o0006z7fyl3n9ffqn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -552,7 +671,7 @@
 </ul>
 <h3 id="4-验证单线程性能"><a href="#4-验证单线程性能" class="headerlink" title="4. 验证单线程性能"></a>4. <strong>验证单线程性能</strong></h3><ul>
 <li><p>为了验证你达到了CPU单线程的最大性能，你可以创建并运行下面的存储过程<em>stored procedure</em></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> [tpcc]<span class="keyword">GO</span><span class="keyword">SET</span> ANSI_NULLS <span class="keyword">ON</span><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> [dbo].[CPUSIMPLE]</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">BEGIN</span></span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @n <span class="built_in">numeric</span>(<span class="number">16</span>,<span class="number">6</span>) = <span class="number">0</span>,</span><br><span class="line">            @a DATETIME,</span><br><span class="line">            @b DATETIME</span><br><span class="line">        <span class="keyword">DECLARE</span></span><br><span class="line">            @f <span class="built_in">int</span></span><br><span class="line">        <span class="keyword">SET</span> @f = <span class="number">1</span>        <span class="keyword">SET</span> @a = <span class="keyword">CURRENT_TIMESTAMP</span>        <span class="keyword">WHILE</span> @f &lt;= <span class="number">10000000</span>            <span class="keyword">BEGIN</span>        <span class="keyword">SET</span> @n = @n % <span class="number">999999</span> + <span class="keyword">sqrt</span>(@f)</span><br><span class="line">                <span class="keyword">SET</span> @f = @f + <span class="number">1</span></span><br><span class="line">            <span class="keyword">END</span>        <span class="keyword">SET</span> @b = <span class="keyword">CURRENT_TIMESTAMP</span>        PRINT <span class="string">'Timing = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(<span class="keyword">DATEDIFF</span>(MS, @a, @b)<span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)</span><br><span class="line">        PRINT <span class="string">'Res = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(@n <span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)<span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">USE</span> [tpcc]<span class="keyword">GO</span><span class="keyword">SET</span> ANSI_NULLS <span class="keyword">ON</span><span class="keyword">GO</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> [dbo].[CPUSIMPLE]</div><div class="line"><span class="keyword">AS</span></div><div class="line">    <span class="keyword">BEGIN</span></div><div class="line">        <span class="keyword">DECLARE</span></div><div class="line">            @n <span class="built_in">numeric</span>(<span class="number">16</span>,<span class="number">6</span>) = <span class="number">0</span>,</div><div class="line">            @a DATETIME,</div><div class="line">            @b DATETIME</div><div class="line">        <span class="keyword">DECLARE</span></div><div class="line">            @f <span class="built_in">int</span></div><div class="line">        <span class="keyword">SET</span> @f = <span class="number">1</span>        <span class="keyword">SET</span> @a = <span class="keyword">CURRENT_TIMESTAMP</span>        <span class="keyword">WHILE</span> @f &lt;= <span class="number">10000000</span>            <span class="keyword">BEGIN</span>        <span class="keyword">SET</span> @n = @n % <span class="number">999999</span> + <span class="keyword">sqrt</span>(@f)</div><div class="line">                <span class="keyword">SET</span> @f = @f + <span class="number">1</span></div><div class="line">            <span class="keyword">END</span>        <span class="keyword">SET</span> @b = <span class="keyword">CURRENT_TIMESTAMP</span>        PRINT <span class="string">'Timing = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(<span class="keyword">DATEDIFF</span>(MS, @a, @b)<span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)</div><div class="line">        PRINT <span class="string">'Res = '</span> + <span class="keyword">ISNULL</span>(<span class="keyword">CAST</span>(@n <span class="keyword">AS</span> <span class="built_in">VARCHAR</span>),<span class="string">''</span>)<span class="keyword">END</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
@@ -560,7 +679,7 @@
 <p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2021.41.29.png" alt="Figure 2 Create Procedure"></p>
 </li>
 <li><p>右键点击CPUSIMPLE，并且点击执行存储过程<em>stored procedure</em>，点击OK并等待。如果运行成功会返回0值，点击信息查看程序运行时间，例如：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Timing = 8250Res = 873729.721235</span><br><span class="line">(1 row(s) affected)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Timing = 8250Res = 873729.721235</div><div class="line">(1 row(s) affected)</div></pre></td></tr></table></figure>
 <p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2021.41.43.png" alt="Figure 3 Run Procedure"></p>
 </li>
 <li>在这个案例中，存储过程运行时间为8.2秒。实际性能表现依赖于使用的CPU，通常最新的CPU都应该在10s内完成这个事务。</li>
@@ -576,7 +695,7 @@
 </ul>
 <h3 id="6-SQL-Server的属性"><a href="#6-SQL-Server的属性" class="headerlink" title="6. SQL Server的属性"></a>6. <strong>SQL Server的属性</strong></h3><ul>
 <li><p>你可以根据你已有的硬件，使用图形化工具或者手工操作对SQL Server进行配置。下面的例子展示了内存在256GB到512GB时使用的一个配置。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exec sp_configure '<span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">', '</span><span class="number">1</span><span class="string">'</span><br><span class="line">reconfigure with overrideexec sp_configure '</span><span class="keyword">min</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 256000</span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 512000</span><br><span class="line">exec sp_configure '</span><span class="keyword">recovery</span> <span class="built_in">interval</span><span class="string">','</span><span class="number">32767</span><span class="string">'</span><br><span class="line">exec sp_configure '</span><span class="keyword">max</span> degree <span class="keyword">of</span> parallelism<span class="string">','</span><span class="number">1</span><span class="string">'</span><br><span class="line">exec sp_configure '</span>lightweight pooling<span class="string">','</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">priority</span> boost<span class="string">', '</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">max</span> worker threads<span class="string">', 3000</span><br><span class="line">exec sp_configure '</span><span class="keyword">default</span> <span class="keyword">trace</span> enabled<span class="string">', 0</span><br><span class="line">goreconfigure with override</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">exec sp_configure '<span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">', '</span><span class="number">1</span><span class="string">'</span></div><div class="line">reconfigure with overrideexec sp_configure '<span class="keyword">min</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 256000</span></div><div class="line">exec sp_configure '<span class="keyword">max</span> <span class="keyword">server</span> <span class="keyword">memory</span><span class="string">', 512000</span></div><div class="line">exec sp_configure '<span class="keyword">recovery</span> <span class="built_in">interval</span><span class="string">','</span><span class="number">32767</span><span class="string">'</span></div><div class="line">exec sp_configure '<span class="keyword">max</span> degree <span class="keyword">of</span> parallelism<span class="string">','</span><span class="number">1</span><span class="string">'</span></div><div class="line">exec sp_configure 'lightweight pooling<span class="string">','</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">priority</span> boost<span class="string">', '</span><span class="number">1</span><span class="string">'exec sp_configure '</span><span class="keyword">max</span> worker threads<span class="string">', 3000</span></div><div class="line">exec sp_configure '<span class="keyword">default</span> <span class="keyword">trace</span> enabled<span class="string">', 0</span></div><div class="line">goreconfigure with override</div></pre></td></tr></table></figure>
 <p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.12.11.png" alt="Figure 6 Server Properties"></p>
 </li>
 <li><p>同时注意把处理器关联性<em>Processor Affinity</em>设置为自动模式</p>
@@ -593,12 +712,12 @@
 <p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.13.14.png" alt="Figure 9 Updated Schema"></p>
 </li>
 <li><p>创建完成后马上对<em>TPCC</em>数据库进行备份，最简单的方式就是停止SQL Server服务器，然后将<em>TPCC</em> DATA和LOG文件复制到备份文件夹。如果要重置计划，只需要删除现有的计划，将DATA和LOG文件从备份文件夹中拷贝回来，然后使用ATTACH命令将原始的数据库添加回来，再使用下面的命令配置该计划。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> <span class="keyword">RECOVERY</span> SIMPLE</span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> TORN_PAGE_DETECTION <span class="keyword">OFF</span></span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> PAGE_VERIFY <span class="keyword">NONE</span></span><br><span class="line"><span class="keyword">GO</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> <span class="keyword">RECOVERY</span> SIMPLE</div><div class="line"><span class="keyword">GO</span></div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> TORN_PAGE_DETECTION <span class="keyword">OFF</span></div><div class="line"><span class="keyword">GO</span></div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> tpcc <span class="keyword">SET</span> PAGE_VERIFY <span class="keyword">NONE</span></div><div class="line"><span class="keyword">GO</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="9-分割历史表"><a href="#9-分割历史表" class="headerlink" title="9. 分割历史表"></a>9. <strong>分割历史表</strong></h3><ul>
 <li><p>对于高度可扩展的系统来说，分割历史表可以减少插入冲突，无论是在你使用SQL Server Management Studio或者运行语句时。下面的语句根据仓库数量修改高亮部分的数值，每100个仓库划为1个分区。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> [tpcc]</span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">BEGIN</span> <span class="keyword">TRANSACTION</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PARTITION</span> <span class="keyword">FUNCTION</span> [HISTORY_PART](<span class="built_in">int</span>) <span class="keyword">AS</span> <span class="keyword">RANGE</span> <span class="keyword">LEFT</span> <span class="keyword">FOR</span> <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">400</span>, <span class="number">500</span>, <span class="number">600</span>, <span class="number">700</span>, <span class="number">800</span>, <span class="number">900</span>)</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PARTITION</span> SCHEME [HISTORY_PART] <span class="keyword">AS</span> <span class="keyword">PARTITION</span> [HISTORY_PART] <span class="keyword">TO</span> ([PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY])</span><br><span class="line"><span class="keyword">CREATE</span> CLUSTERED <span class="keyword">INDEX</span> [ClusteredIndex_on_HISTORY_PART_634589363881526517] <span class="keyword">ON</span> [dbo].[history] ( [h_w_id] )<span class="keyword">WITH</span> (SORT_IN_TEMPDB = <span class="keyword">OFF</span>, IGNORE_DUP_KEY = <span class="keyword">OFF</span>, DROP_EXISTING = <span class="keyword">OFF</span>, <span class="keyword">ONLINE</span> = <span class="keyword">OFF</span>) <span class="keyword">ON</span> [HISTORY_PART]([h_w_id])</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> [ClusteredIndex_on_HISTORY_PART_634589363881526517] <span class="keyword">ON</span> [dbo].[history] <span class="keyword">WITH</span> ( <span class="keyword">ONLINE</span> = <span class="keyword">OFF</span> )</span><br><span class="line"><span class="keyword">COMMIT</span> <span class="keyword">TRANSACTION</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">USE</span> [tpcc]</div><div class="line"><span class="keyword">GO</span></div><div class="line"><span class="keyword">BEGIN</span> <span class="keyword">TRANSACTION</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">PARTITION</span> <span class="keyword">FUNCTION</span> [HISTORY_PART](<span class="built_in">int</span>) <span class="keyword">AS</span> <span class="keyword">RANGE</span> <span class="keyword">LEFT</span> <span class="keyword">FOR</span> <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">400</span>, <span class="number">500</span>, <span class="number">600</span>, <span class="number">700</span>, <span class="number">800</span>, <span class="number">900</span>)</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">PARTITION</span> SCHEME [HISTORY_PART] <span class="keyword">AS</span> <span class="keyword">PARTITION</span> [HISTORY_PART] <span class="keyword">TO</span> ([PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY],[PRIMARY])</div><div class="line"><span class="keyword">CREATE</span> CLUSTERED <span class="keyword">INDEX</span> [ClusteredIndex_on_HISTORY_PART_634589363881526517] <span class="keyword">ON</span> [dbo].[history] ( [h_w_id] )<span class="keyword">WITH</span> (SORT_IN_TEMPDB = <span class="keyword">OFF</span>, IGNORE_DUP_KEY = <span class="keyword">OFF</span>, DROP_EXISTING = <span class="keyword">OFF</span>, <span class="keyword">ONLINE</span> = <span class="keyword">OFF</span>) <span class="keyword">ON</span> [HISTORY_PART]([h_w_id])</div><div class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> [ClusteredIndex_on_HISTORY_PART_634589363881526517] <span class="keyword">ON</span> [dbo].[history] <span class="keyword">WITH</span> ( <span class="keyword">ONLINE</span> = <span class="keyword">OFF</span> )</div><div class="line"><span class="keyword">COMMIT</span> <span class="keyword">TRANSACTION</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="10-调整事务日志文件的大小"><a href="#10-调整事务日志文件的大小" class="headerlink" title="10. 调整事务日志文件的大小"></a>10. <strong>调整事务日志文件的大小</strong></h3><ul>
@@ -621,7 +740,7 @@
 </blockquote>
 </li>
 <li><p>如果要将设置检查点的事件推迟到测试完成后进行，需要重新设置日志文件的大小。日志文件太小会导致检查点在测试完成之前进行设置，文件设置太大又会影响性能。下面的例子将日志文件的大小设置为64GB。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> tpcc</span><br><span class="line">dbcc shrinkfile(<span class="string">'tpcc_log'</span>,truncateonly)</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> tpcc <span class="keyword">modify</span> <span class="keyword">file</span> (<span class="keyword">name</span>=<span class="string">'tpcc_log'</span>, <span class="keyword">size</span>=<span class="number">64000</span>)</span><br><span class="line">dbcc loginfo(<span class="string">'tpcc'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> tpcc</div><div class="line">dbcc shrinkfile(<span class="string">'tpcc_log'</span>,truncateonly)</div><div class="line"><span class="keyword">alter</span> <span class="keyword">database</span> tpcc <span class="keyword">modify</span> <span class="keyword">file</span> (<span class="keyword">name</span>=<span class="string">'tpcc_log'</span>, <span class="keyword">size</span>=<span class="number">64000</span>)</div><div class="line">dbcc loginfo(<span class="string">'tpcc'</span>)</div></pre></td></tr></table></figure>
 </li>
 <li><p>如图11所示，勾选<em>Checkpoint when complete</em>进行设置，让检查点在测试完成后进行设置。</p>
 <p><img src="http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%2022.13.36.png" alt="Figure 11 Checkpoint when complete"></p>
@@ -660,7 +779,7 @@
 
 </div>
 
-    <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cin67hj1m0000gt8ah311anf3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xueyaodeai.github.io/2016/02/21/HammerDB/" data-id="cj3g55p8d0000z7fy1gpv4qqu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -809,7 +928,7 @@
 <li>在<code>function</code>和函数名称后面保留1个空格</li>
 <li>在参数之间保留1个空格，但不要跟括号保留空格。</li>
 <li><p>对比较长的三元判断进行分割，例如:</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = superLongConditionalStatement</span><br><span class="line">  ? <span class="string">'yep'</span></span><br><span class="line">  : <span class="string">'nope'</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = superLongConditionalStatement</div><div class="line">  ? <span class="string">'yep'</span></div><div class="line">  : <span class="string">'nope'</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>如果有疑问，请阅读源码</p>
 </li>
@@ -817,15 +936,15 @@
 <h2 id="development-setup">开发安装步骤</h2>
 
 <p>你需要安装<a href="https://nodejs.org" target="_blank" rel="external">Node.js</a>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br><span class="line"><span class="comment"># install pre-commit lint hook</span></span><br><span class="line">$ npm run install-hook</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm install</div><div class="line"><span class="comment"># install pre-commit lint hook</span></div><div class="line">$ npm run install-hook</div></pre></td></tr></table></figure>
 <p>Dev模式: 开发过程中，监控并自动构建<code>dist/vue.js</code>，并且在<code>http://localhost:8080</code>输出单元测试结果:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm run dev</div></pre></td></tr></table></figure>
 <p>链接:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run lint</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm run lint</div></pre></td></tr></table></figure>
 <p>构建:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div></pre></td></tr></table></figure>
 <p>运行默认的测试套:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div></pre></td></tr></table></figure>
 <p>默认的测试脚本会执行以下步骤:链接-&gt;单元覆盖测试-&gt;构建-&gt;端对端测试。<strong>在提交Pull Request之前请确保这个测试成功通过</strong>。</p>
 <p>单元测试使用<a href="http://jasmine.github.io/2.3/introduction.html" target="_blank" rel="external">Jasmine</a>，并在<a href="http://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">Karma</a>上运行。至于端对端测试则是运行在<a href="http://casperjs.org/" target="_blank" rel="external">CasperJS</a>之上。</p>
 
@@ -838,7 +957,7 @@
 
 </div>
 
-    <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cin67hj1r0001gt8a2uabzblj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xueyaodeai.github.io/2015/12/14/Vuejs代码提交规范/" data-id="cj3g55p8m0005z7fyuzcusihg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -963,7 +1082,7 @@
 
 </div>
 
-    <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cin67hj1w0004gt8aanmdrly9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xueyaodeai.github.io/2015/12/12/使用hexo和Github-pages搭建个人blog/" data-id="cj3g55p8q0007z7fyi0b7znvq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1053,6 +1172,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2016/08/09/Hello-World/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/09/Hello-World/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2016-08-09T14:54:03.000Z" itemprop="datePublished">2016-08-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/03/27/关于公司项目的测试优化方案/" class="thumbnail">
     
     
@@ -1126,25 +1264,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2015/12/12/使用hexo和Github-pages搭建个人blog/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://7i7gvf.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-24%20%E4%B8%8B%E5%8D%8810.30.32.png)" alt="记忆中的2班" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/12/12/使用hexo和Github-pages搭建个人blog/" class="title">记忆中的2班</a></p>
-                            <p class="item-date"><time datetime="2015-12-12T10:49:18.000Z" itemprop="datePublished">2015-12-12</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1156,7 +1275,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -1202,7 +1321,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2016 Allen<br>
+            &copy; 2017 Allen<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
